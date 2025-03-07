@@ -1,185 +1,77 @@
-# **Taller de Web Scraping**
+# 🚀 Taller de Web Scraping con Python 🕵️‍♂️
 
-## **Parte 1: Introducción a Web Scraping**
+¡Bienvenido al **Taller de Web Scraping con Python**! En este taller, exploramos técnicas avanzadas para extraer información de páginas web, respetando las normas de ética y buenas prácticas. Aprendimos a usar herramientas como **BeautifulSoup** y **Requests**, además de aplicar IA para analizar datos extraídos. 🧠📊
 
-### **Ejercicio 1: Explorar el archivo robots.txt**
+## 📌 **¿Qué Aprenderás?**
 
-1. Busca el archivo `robots.txt` de una página web y analiza sus reglas.
+✅ Cómo leer y analizar el archivo `robots.txt` de un sitio web.  
+✅ Cómo extraer información de páginas web con **BeautifulSoup**.  
+✅ Cómo almacenar los datos extraídos en formatos como **CSV** y **JSON**.  
+✅ Cómo usar **OpenAI** para resumir contenido automáticamente.
 
-   - Ejemplo: [https://www.wikipedia.org/robots.txt](https://www.wikipedia.org/robots.txt)
-   - Identifica qué partes están permitidas para el scraping.
+## 🛠 **Tecnologías Utilizadas**
 
-2. Explicación de las reglas:
-   - **User-agent**: Indica a qué rastreadores (como Googlebot o scrapers personalizados) se aplican las reglas.
-   - **Disallow**: Especifica qué partes del sitio están prohibidas para el web scraping.
-   - **Allow**: Especifica qué partes del sitio están permitidas para el scraping.
+- **Python 3.x** 🐍
+- **BeautifulSoup** 🍲
+- **Requests** 🔗
+- **Pandas** 📊
+- **OpenAI API** 🤖
 
-### **Preguntas reflexivas**
+---
 
-- **¿Por qué algunos sitios web bloquean el Web Scraping?**
+## 📖 **Cómo Ejecutar el Proyecto**
 
-  - El bloqueo del web scraping se da por diferentes razones, como sobrecarga del servidor, violación de los términos de servicio o uso excesivo de recursos.
-  - **Sobrecarga del servidor**
-    - Los robots mal diseñados pueden sobrecargar el servidor al realizar solicitudes excesivas.
-  - **Violación de los términos de servicio**
-    - Los sitios web pueden bloquear los raspadores web porque violan sus términos de servicio.
-  - **Medidas anti-scraping**
-    - Los sitios web pueden implementar CAPTCHA para diferenciar entre usuarios humanos y robots de scraping.
+### 🔹 1. Clonar el Repositorio
 
-- **¿Cuándo es preferible usar una API en lugar de Web Scraping?**
-
-  - El uso de una API o de web scraping depende de la necesidad de los datos, el presupuesto, los recursos tecnológicos y si el sitio web tiene una API.
-  - **API**
-    - Es una opción para obtener datos estructurados y confiables.
-    - Permite integrar servicios de otros proveedores, como redes sociales, sistemas de pago y geolocalización.
-    - Acelera el desarrollo de aplicaciones y facilita la automatización de tareas.
-  - **Web Scraping**
-    - Ofrece mayor flexibilidad y cobertura.
-    - Permite extraer datos de sitios web que no tienen APIs.
-    - Posibilita la extracción de información adicional que no está disponible en una API.
-
-- **Herramientas populares para Web Scraping en Python**
-  - La principal herramienta para el web scraping en Python es la librería `BeautifulSoup`, que facilita el análisis y extracción de datos de documentos HTML y XML.
-
-## **Análisis del archivo robots.txt de Mercado Libre**
-
-### **robots.txt para www.mercadolibre.com.co**
-
-```plaintext
-User-agent: Amazonbot
-Disallow: /
-
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: FacebookExternalHit
-User-agent: FacebookBot
-User-agent: Twitterbot
-User-agent: LinkedInBot
-Disallow:
-
-User-agent: *
-Disallow: /HOME/
-Disallow: /gz/merch/
-Disallow: /gz/menu
-Disallow: /gz/webdevice/config
-Disallow: /gz/referidos
-Disallow: /*www.siteinfo.cf
-Disallow: /gz/cart/
-Disallow: /gz/checkout/
-Disallow: /gz/user-logged
-Disallow: /gz/shipping-selector
-Disallow: /gz/navigation/searches/last
-Disallow: /perfil/vendedor/
-Disallow: /perfil/comprador/
-Disallow: /perfil/profile/
-Disallow: /perfil/jm/profile
-Disallow: /perfil/ALEXSETHMS
-Disallow: /noindex/
-Disallow: /navigation/
-Disallow: /*itemid
-Disallow: /*/jm/item
-Disallow: /recommendations*
-Disallow: /*attributes=
-Disallow: /*quantity=
-Disallow: /org-img/html/
-Disallow: /registration?confirmation_url*
-Disallow: /home/recommendations
-Disallow: /social/
-Disallow: /adn/api*
-Disallow: /product-fe-recommendations/recommendations*
-Disallow: /*.js
-Disallow: /finditem.ml
+```bash
+git clone https://github.com/tu_usuario/taller-webscraping.git
+cd taller-webscraping
 ```
 
-### **Análisis del archivo robots.txt**
+### 🔹 2. Crear un Entorno Virtual (Opcional pero Recomendado)
 
-1. **Bloqueo de bots específicos**
-
-```plaintext
-User-agent: Amazonbot
-Disallow: /
-User-agent: ClaudeBot
-Disallow: /
+```bash
+python -m venv venv
+source venv/bin/activate  # En macOS/Linux
+venv\Scripts\activate  # En Windows
 ```
 
-- **Amazonbot** y **ClaudeBot** están bloqueados, lo que significa que no pueden rastrear ninguna parte del sitio.
+### 🔹 3. Instalar las Dependencias
 
-2. **Bots de redes sociales permitidos**
-
-```plaintext
-User-agent: FacebookExternalHit
-User-agent: FacebookBot
-User-agent: Twitterbot
-User-agent: LinkedInBot
-Disallow:
+```bash
+pip install -r requirements.txt
 ```
 
-3. **Restricciones generales para todos los robots**
+### 🔹 4. Ejecutar el Código
 
-```plaintext
-User-agent: *
-Disallow: /HOME/
-Disallow: /gz/merch/
-Disallow: /gz/menu
-Disallow: /gz/webdevice/config
-Disallow: /gz/referidos
-Disallow: /*www.siteinfo.cf
-Disallow: /gz/cart/
-Disallow: /gz/checkout/
-Disallow: /gz/user-logged
-Disallow: /gz/shipping-selector
-Disallow: /gz/navigation/searches/last
-Disallow: /perfil/vendedor/
-Disallow: /perfil/comprador/
-Disallow: /perfil/profile/
-Disallow: /perfil/jm/profile
-Disallow: /perfil/ALEXSETHMS
-Disallow: /noindex/
-Disallow: /navigation/
-Disallow: /*itemid
-Disallow: /*/jm/item
-Disallow: /recommendations*
-Disallow: /*attributes=
-Disallow: /*quantity=
-Disallow: /org-img/html/
-Disallow: /registration?confirmation_url*
-Disallow: /home/recommendations
-Disallow: /social/
-Disallow: /adn/api*
-Disallow: /product-fe-recommendations/recommendations*
-Disallow: /*.js
-Disallow: /finditem.ml
+Si estás usando **Jupyter Notebook**, inicia con:
+
+```bash
+jupyter notebook
 ```
 
-## **Ejercicio 2: Extracción de títulos de noticias**
+Abre `taller_web_scraping.ipynb` y sigue los pasos explicados.
 
-```python
-import requests
-from bs4 import BeautifulSoup
+Si prefieres ejecutar scripts de Python directamente:
 
-# URL de la página de noticias
-url = "https://elpais.com/tecnologia/"
-headers = {"User-Agent": "Chrome/120.0.0.0"}
-response = requests.get(url, headers=headers)
-
-if response.status_code == 200:
-    print(f"✅ Conexión exitosa a {url}")
-
-# Parseamos el contenido de la página con BeautifulSoup
-soup = BeautifulSoup(response.text, "html.parser")
-
-# Extraemos los títulos con el tag h2
-titulos = soup.find_all("h2")
-
-print(f"👽 Cantidad de noticias extraídas {len(titulos)}")
-for i, titulo in enumerate(titulos, start=1):
-    print(f"{i}. {titulo.text.strip()}")
-
-print(f"🤖 Extraemos las noticias que contengan algo relacionado a la IA")
-i = 0
-for titulo in titulos:
-    if " IA " in titulo.text.upper() or "inteligencia artificial" in titulo.text.upper():
-        i += 1
-        print(f"{i}. {titulo.text.strip()}")
+```bash
+python script.py
 ```
+
+---
+
+## 🧩 **Retos Adicionales**
+
+🚀 Mejora el scraping añadiendo filtros avanzados de búsqueda.  
+🚀 Usa Selenium para interactuar con formularios y botones en páginas dinámicas.  
+🚀 Aplica procesamiento de lenguaje natural (NLP) para clasificar textos extraídos.
+
+---
+
+## 🏆 **Conclusión**
+
+Este taller proporciona una introducción sólida al Web Scraping con Python, abarcando desde la extracción de datos hasta su procesamiento con IA. Siguiendo buenas prácticas y respetando los términos de uso de los sitios web, podemos aprovechar esta técnica para análisis de datos, automatización y más. 🔥
+
+📩 **¿Tienes dudas o mejoras?** ¡Abre un issue o contribuye al proyecto! 😃
+
+🎯 _¡Feliz scraping!_ 🕵️‍♂️💻
